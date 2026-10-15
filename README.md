@@ -53,7 +53,9 @@ Configuración: copia `.env.example` como `.env`, o usa variables de entorno.
 2. En Render: **New > Blueprint**, elige el repositorio. Render lee `render.yaml`.
 3. Completa los valores que pide: `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`
    (los de Aiven; usa un usuario propio para el sistema, no `avnadmin`).
-4. En el servicio: **Environment > Secret Files**, agrega `ca.pem` con el certificado CA de Aiven.
+4. En `DB_SSL_CA` pega el contenido completo del certificado CA de Aiven (desde
+   `-----BEGIN CERTIFICATE-----` hasta `-----END CERTIFICATE-----`). Se acepta con saltos de
+   línea o todo en una línea. No hace falta `DB_SSL_CA_PATH` (si está, `DB_SSL_CA` tiene prioridad).
 5. Si Aiven tiene restringidas las IP permitidas, agrega las IP de salida del servicio
    (Render las muestra en **Connect > Outbound**).
 6. Al terminar, prueba `https://<servicio>.onrender.com/api/health`: debe responder

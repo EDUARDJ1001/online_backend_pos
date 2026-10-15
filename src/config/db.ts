@@ -101,12 +101,34 @@ function noteQuery(sql: string) {
 
 // ------------------------------------------------------------------ MySQL
 
-function mysqlOptions(settings: DbSettings): mysql.PoolOptions {
-  const caPath = settings.sslMode === "REQUIRED" ? resolveCaPath(settings.sslCaPath ?? undefined) : null;
+/**
+ * Certificado CA pegado como texto (DB_SSL_CA), para servicios en la nube sin archivos.
+ * Acepta el PEM con saltos de línea, con "\n" escritos o todo en una línea: se rearma.
+ */
+function caFromEnv() {
+  const raw = env.DB_SSL_CA?.trim();
+  if (!raw) return null;
+  const blocks = [...raw.replace(/\\n/g, "\n").matchAll(/-----BEGIN CERTIFICATE-----([\s\S]*?)-----END CERTIFICATE-----/g)];
+  if (blocks.length === 0) {
+    throw new Error("DB_SSL_CA no tiene un certificado válido: debe incluir las líneas BEGIN CERTIFICATE y END CERTIFICATE.");
+  }
+  return blocks
+    .map(([, body]) => {
+      const lines = body!.replace(/\s+/g, "").match(/.{1,64}/g) ?? [];
+      return ["-----BEGIN CERTIFICATE-----", ...lines, "-----END CERTIFICATE-----"].join("\n");
+    })
+    .join("\n");
+}
 
-  if (settings.sslMode === "REQUIRED" && settings.sslCaPath && !caPath) {
+function mysqlOptions(settings: DbSettings): mysql.PoolOptions {
+  const envCa = settings.sslMode === "REQUIRED" ? caFromEnv() : null;
+  const caPath = settings.sslMode === "REQUIRED" && !envCa ? resolveCaPath(settings.sslCaPath ?? undefined) : null;
+
+  if (settings.sslMode === "REQUIRED" && !envCa && settings.sslCaPath && !caPath) {
     throw new Error(`DB_SSL_MODE=REQUIRED pero no se encontró el certificado CA en la ruta configurada: ${settings.sslCaPath}`);
   }
+
+  const ca = envCa ?? (caPath ? fs.readFileSync(caPath, "utf8") : null);
 
   return {
     host: settings.host,
@@ -119,11 +141,7 @@ function mysqlOptions(settings: DbSettings): mysql.PoolOptions {
     decimalNumbers: true,
     namedPlaceholders: false,
     ssl:
-      settings.sslMode === "REQUIRED"
-        ? caPath
-          ? { ca: fs.readFileSync(caPath, "utf8"), rejectUnauthorized: true }
-          : { rejectUnauthorized: true }
-        : undefined
+      settings.sslMode === "REQUIRED" ? (ca ? { ca, rejectUnauthorized: true } : { rejectUnauthorized: true }) : undefined
   };
 }
 

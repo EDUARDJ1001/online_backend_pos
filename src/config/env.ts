@@ -44,6 +44,8 @@ const envSchema = z.object({
   DB_NAME: z.string().default(""),
   DB_SSL_MODE: z.enum(["DISABLED", "REQUIRED"]).default("DISABLED"),
   DB_SSL_CA_PATH: z.string().optional(),
+  // Contenido del certificado CA (PEM) en lugar de un archivo; tiene prioridad sobre DB_SSL_CA_PATH.
+  DB_SSL_CA: z.string().optional(),
   // Detrás de un proxy (nginx, balanceador): cuántos saltos confiar para leer la IP
   // real del cliente (X-Forwarded-For). 0 = conexión directa. Afecta las redes
   // autorizadas de caja y la IP de auditoría.
