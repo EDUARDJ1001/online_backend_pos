@@ -5,7 +5,7 @@ import { permissionsService } from "../modules/permissions/permissions.service";
 
 /** Exige un permiso "recurso.accion" del catálogo para el rol del usuario. */
 export function requirePermission(key: string) {
-  return async (req: Request, _res: Response, next: NextFunction) => {
+  const middleware = async (req: Request, _res: Response, next: NextFunction) => {
     if (!req.auth) {
       return next(new AppError("No autorizado.", 401));
     }
@@ -22,4 +22,6 @@ export function requirePermission(key: string) {
       next(error);
     }
   };
+  // La documentación (src/docs/openapi.ts) muestra el permiso que exige cada ruta.
+  return Object.assign(middleware, { openapi: { permission: key } });
 }

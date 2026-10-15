@@ -3,6 +3,7 @@ import "./config/zod-es";
 import cors, { type CorsOptions } from "cors";
 import express from "express";
 import helmet from "helmet";
+import swaggerUi from "swagger-ui-express";
 
 import { env } from "./config/env";
 import { requireAuth } from "./middlewares/auth.middleware";
@@ -12,6 +13,7 @@ import { schemaGuard } from "./middlewares/schema-guard.middleware";
 import { isDbConfigured, pingDatabase } from "./config/db";
 import { setupRouter } from "./modules/system/setup.routes";
 import { recoverSchemaStatus, schemaStatus } from "./modules/system/migrations.service";
+import { buildOpenApi } from "./docs/openapi";
 import { mountFrontend } from "./frontend-static";
 import { AppError } from "./utils/http-error";
 import { isLocalNetworkOrigin, isSameOrigin } from "./utils/local-origin";
@@ -74,6 +76,25 @@ app.use(
     callback(new AppError("Origen no permitido.", 403), { ...corsOptions, origin: false });
   })
 );
+// Documentación interactiva (Swagger UI) en /docs y la especificación en /docs/openapi.json.
+// Se genera la primera vez que se pide, con todas las rutas ya registradas.
+if (env.SWAGGER_ENABLED === "true") {
+  let spec: ReturnType<typeof buildOpenApi> | null = null;
+  let docsPage: express.RequestHandler | null = null;
+  const docsSpec = () => (spec ??= buildOpenApi(app));
+  // Sin upgrade-insecure-requests: en http://localhost los recursos de la página no cargarían.
+  const docsHelmet = helmet({ contentSecurityPolicy: { directives: { upgradeInsecureRequests: null } } });
+  app.get("/docs/openapi.json", docsHelmet, (_req, res) => {
+    res.json(docsSpec());
+  });
+  app.use("/docs", docsHelmet, swaggerUi.serve, (req: express.Request, res: express.Response, next: express.NextFunction) =>
+    (docsPage ??= swaggerUi.setup(docsSpec(), {
+      customSiteTitle: "Facturación POS - API",
+      swaggerOptions: { persistAuthorization: true }
+    }))(req, res, next)
+  );
+}
+
 app.use(helmet());
 app.use(express.json({ limit: "2mb" }));
 app.use(express.urlencoded({ extended: true }));

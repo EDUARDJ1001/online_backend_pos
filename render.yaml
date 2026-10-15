@@ -40,9 +40,13 @@ services:
       # Sube el ca.pem de Aiven como "Secret File" con el nombre ca.pem.
       - key: DB_SSL_CA_PATH
         value: /etc/secrets/ca.pem
-      # La base ya existe y la actualiza el sistema principal.
+      # Base propia de los POS: al arrancar instala una base vacía y aplica las
+      # migraciones pendientes (incluida la del usuario inicial Admin).
       - key: DB_AUTO_MIGRATE
-        value: "false"
+        value: "true"
+      # Swagger UI en /docs.
+      - key: SWAGGER_ENABLED
+        value: "true"
       - key: JWT_ACCESS_SECRET
         generateValue: true
       - key: JWT_REFRESH_SECRET

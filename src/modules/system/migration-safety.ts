@@ -90,8 +90,11 @@ function stripComments(sql: string) {
 /** Palabras que pueden seguir a DROP sin borrar datos. */
 const SAFE_DROP = new Set(["INDEX", "KEY", "FOREIGN", "CHECK", "CONSTRAINT", "PRIMARY", "VIEW", "PROCEDURE", "FUNCTION", "TRIGGER", "DEFAULT", "STATISTICS", "PREPARE"]);
 
-/** Catálogo del sistema donde una actualización puede agregar filas (permisos de funciones nuevas). */
-const SYSTEM_CATALOG = new Set(["role_permissions"]);
+/**
+ * Tablas donde una actualización puede agregar filas: permisos de funciones nuevas y el
+ * usuario inicial de la versión en la nube. Agregar no cambia las filas existentes.
+ */
+const SYSTEM_CATALOG = new Set(["role_permissions", "users"]);
 
 /** Nombre de tabla o columna: `x`, [x], [dbo].[x] o dbo.x. */
 const NAME = String.raw`(?:\[?dbo\]?\.)?[\x60\[]?(\w+)[\x60\]]?`;

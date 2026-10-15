@@ -60,6 +60,8 @@ const envSchema = z.object({
   JWT_REFRESH_SECRET: z.string().min(16),
   ACCESS_TOKEN_TTL: z.string().default("15m"),
   REFRESH_TOKEN_TTL: z.string().default("7d"),
+  // Documentación Swagger UI en /docs (false = no se publica).
+  SWAGGER_ENABLED: z.enum(["true", "false"]).default("true"),
   // Impresora térmica de tickets (ESC/POS). El backend debe correr en el PC con la impresora.
   // Vacío = sin impresora (la factura cae al diálogo del navegador + PDF).
   // USB Windows (recomendado, sin módulo nativo): comparte la impresora y usa windows:NombreCompartido
