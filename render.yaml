@@ -4,7 +4,7 @@ services:
   - type: web
     name: facturacion-pos-backend
     runtime: node
-    plan: starter
+    plan: free
     region: oregon
     # NODE_ENV=production haría que npm omita TypeScript; se incluye para compilar.
     buildCommand: npm ci --include=dev && npm run build
