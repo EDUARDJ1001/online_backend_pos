@@ -1,0 +1,62 @@
+{
+  "name": "backend-punto-venta",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/src/server.js",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/src/server.js",
+    "seed": "tsx scripts/seed-demo.ts",
+    "seed:test": "tsx scripts/seed-test-data.ts",
+    "db:install-sql": "tsx scripts/generate-install-sql.ts",
+    "db:mssql-sql": "tsx scripts/generate-mssql-sql.ts",
+    "db:script-sqlserver": "tsx scripts/generate-mssql-update-script.ts",
+    "db:usuario-caja": "tsx scripts/generate-caja-user-sql.ts",
+    "db:scripts-nuevos": "tsx scripts/generate-new-db-scripts.ts",
+    "db:regenerar": "tsx scripts/regenerar-base.ts",
+    "db:esquema": "tsx scripts/verificar.ts --sin-tipos --actualizar-esquema --motor=mariadb,mssql",
+    "db:copy-to-mssql": "tsx scripts/copy-mysql-to-mssql.ts",
+    "db:smoke": "tsx scripts/smoke-db.ts",
+    "db:flow-test": "tsx scripts/flow-test.ts",
+    "db:medir": "tsx scripts/medir.ts",
+    "test:validaciones": "tsx scripts/validation-test.ts",
+    "verificar": "tsx scripts/verificar.ts",
+    "build:exe": "tsx scripts/build-exe.ts",
+    "publicar:version": "tsx scripts/publicar-version.ts",
+    "gestor": "tsx scripts/gestor.ts",
+    "build:gestor": "tsx scripts/build-gestor.ts",
+    "tecnico:clave": "tsx scripts/clave-tecnico.ts",
+    "db:actualizar": "tsx scripts/actualizar-base.ts",
+    "db:prueba-actualizaciones": "tsx scripts/migration-safety-test.ts"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "helmet": "^8.0.0",
+    "jimp": "^0.22.12",
+    "jsonwebtoken": "^9.0.2",
+    "mssql": "^11.0.2",
+    "mysql2": "^3.11.3",
+    "node-thermal-printer": "^4.6.1",
+    "pdfkit": "^0.15.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/mssql": "^12.3.0",
+    "@types/node": "^22.8.1",
+    "@types/pdfkit": "^0.13.8",
+    "esbuild": "^0.28.2",
+    "postject": "^1.0.0-alpha.6",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3"
+  }
+}

@@ -1,0 +1,13 @@
+-- ============================================================
+-- Migración: 2026_09_29_000001_generic_client_code
+-- Base:  MySQL 8 / MariaDB 10.4+
+-- Objetivo:
+--   Sin cambios en la base. Se conserva el archivo para que las bases que ya la
+--   registraron sigan reconocidas.
+--   Antes cambiaba el código del cliente "Consumidor final" ("CF" a "1") y vinculaba
+--   ventas viejas sin cliente. Se quitó: las actualizaciones solo cambian la estructura
+--   y nunca modifican datos que ya existen. Las empresas nuevas ya nacen con el
+--   cliente genérico en código "1"; el sistema lo reconoce por is_generic, no por código.
+--
+-- Versión SQL Server: migrations-mssql/ (mismo nombre de archivo).
+-- ============================================================

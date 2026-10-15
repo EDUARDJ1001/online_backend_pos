@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.env.*
+!.env.example
+ca.pem
+equipo.dat
+equipo.idx
+*.log
+*.tsbuildinfo

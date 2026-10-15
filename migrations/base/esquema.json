@@ -1,0 +1,2271 @@
+{
+  "migration": "2026_10_06_000001_license_registry.sql",
+  "tables": {
+    "audit_logs": {
+      "action": {
+        "type": "varchar(50)",
+        "nullable": false
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "description": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "entity_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "entity_type": {
+        "type": "varchar(50)",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "ip_address": {
+        "type": "varchar(45)",
+        "nullable": true
+      },
+      "new_values": {
+        "type": "longtext",
+        "nullable": true
+      },
+      "old_values": {
+        "type": "longtext",
+        "nullable": true
+      },
+      "user_agent": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "user_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      }
+    },
+    "bank_accounts": {
+      "account_number": {
+        "type": "varchar(40)",
+        "nullable": false
+      },
+      "account_type": {
+        "type": "enum('corriente','ahorro')",
+        "nullable": false
+      },
+      "alias": {
+        "type": "varchar(80)",
+        "nullable": true
+      },
+      "bank_name": {
+        "type": "varchar(80)",
+        "nullable": false
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "created_by": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "currency": {
+        "type": "enum('hnl','usd')",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "is_active": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "opening_balance": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "opening_date": {
+        "type": "date",
+        "nullable": false
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      }
+    },
+    "bank_movements": {
+      "amount": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "bank_account_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "beneficiary": {
+        "type": "varchar(150)",
+        "nullable": true
+      },
+      "check_number": {
+        "type": "varchar(30)",
+        "nullable": true
+      },
+      "check_status": {
+        "type": "enum('emitido','cobrado')",
+        "nullable": true
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "created_by": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "description": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "direction": {
+        "type": "enum('in','out')",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "movement_date": {
+        "type": "date",
+        "nullable": false
+      },
+      "movement_type": {
+        "type": "enum('deposito','retiro','transferencia_entrada','transferencia_salida','comision','interes','nota_credito','nota_debito','cheque')",
+        "nullable": false
+      },
+      "reference": {
+        "type": "varchar(60)",
+        "nullable": true
+      },
+      "related_movement_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "status": {
+        "type": "enum('activo','anulado')",
+        "nullable": false
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "void_reason": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "voided_at": {
+        "type": "datetime",
+        "nullable": true
+      },
+      "voided_by": {
+        "type": "bigint unsigned",
+        "nullable": true
+      }
+    },
+    "billing_series": {
+      "cai": {
+        "type": "varchar(80)",
+        "nullable": false
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "current_number": {
+        "type": "int unsigned",
+        "nullable": false
+      },
+      "document_code": {
+        "type": "char(2)",
+        "nullable": false
+      },
+      "document_type": {
+        "type": "enum('factura','nota_credito','nota_debito','recibo')",
+        "nullable": false
+      },
+      "establishment_code": {
+        "type": "char(3)",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "is_active": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "issue_deadline": {
+        "type": "date",
+        "nullable": false
+      },
+      "notes": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "point_code": {
+        "type": "char(3)",
+        "nullable": false
+      },
+      "range_end": {
+        "type": "int unsigned",
+        "nullable": false
+      },
+      "range_start": {
+        "type": "int unsigned",
+        "nullable": false
+      },
+      "resolution_date": {
+        "type": "date",
+        "nullable": true
+      },
+      "resolution_number": {
+        "type": "varchar(80)",
+        "nullable": true
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      }
+    },
+    "billing_settings": {
+      "allow_client_name_correction": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "allow_invoice_date_reissue": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "default_tax_rate": {
+        "type": "decimal(5,2)",
+        "nullable": false
+      },
+      "footer_text": {
+        "type": "text",
+        "nullable": true
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "invoice_title": {
+        "type": "varchar(100)",
+        "nullable": false
+      },
+      "legend_copy": {
+        "type": "varchar(120)",
+        "nullable": false
+      },
+      "legend_original": {
+        "type": "varchar(120)",
+        "nullable": false
+      },
+      "payable_to": {
+        "type": "varchar(180)",
+        "nullable": true
+      },
+      "sar_notice": {
+        "type": "varchar(255)",
+        "nullable": false
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      }
+    },
+    "cash_movements": {
+      "amount": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "created_by": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "description": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "direction": {
+        "type": "enum('in','out')",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "method": {
+        "type": "enum('efectivo','transferencia','cheque','tarjeta','otro')",
+        "nullable": false
+      },
+      "reference_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "reference_type": {
+        "type": "varchar(30)",
+        "nullable": true
+      },
+      "session_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "type": {
+        "type": "enum('apertura','venta_contado','abono_cxc','pago_cxp','ingreso','egreso','retiro','ajuste')",
+        "nullable": false
+      }
+    },
+    "cash_network_rules": {
+      "cash_register_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "cidr": {
+        "type": "varchar(64)",
+        "nullable": false
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "created_by": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "label": {
+        "type": "varchar(80)",
+        "nullable": true
+      }
+    },
+    "cash_registers": {
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "is_active": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "name": {
+        "type": "varchar(80)",
+        "nullable": false
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      }
+    },
+    "cash_sessions": {
+      "cash_register_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "closed_at": {
+        "type": "timestamp",
+        "nullable": true
+      },
+      "closed_by": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "closing_breakdown": {
+        "type": "longtext",
+        "nullable": true
+      },
+      "closing_notes": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "counted_amount": {
+        "type": "decimal(14,2)",
+        "nullable": true
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "difference": {
+        "type": "decimal(14,2)",
+        "nullable": true
+      },
+      "expected_amount": {
+        "type": "decimal(14,2)",
+        "nullable": true
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "open_guard": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "opened_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "opened_by": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "opening_amount": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "opening_breakdown": {
+        "type": "longtext",
+        "nullable": true
+      },
+      "opening_notes": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "status": {
+        "type": "enum('abierta','cerrada')",
+        "nullable": false
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      }
+    },
+    "cash_terminal_pairings": {
+      "cash_register_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "code_hash": {
+        "type": "char(64)",
+        "nullable": false
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "created_by": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "expires_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "terminal_name": {
+        "type": "varchar(80)",
+        "nullable": true
+      },
+      "used_at": {
+        "type": "timestamp",
+        "nullable": true
+      },
+      "used_terminal_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      }
+    },
+    "cash_terminals": {
+      "bound_ip": {
+        "type": "varchar(45)",
+        "nullable": true
+      },
+      "cash_register_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "is_active": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "last_ip": {
+        "type": "varchar(45)",
+        "nullable": true
+      },
+      "last_seen_at": {
+        "type": "timestamp",
+        "nullable": true
+      },
+      "name": {
+        "type": "varchar(80)",
+        "nullable": false
+      },
+      "registered_by": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "registered_ip": {
+        "type": "varchar(45)",
+        "nullable": true
+      },
+      "token_hash": {
+        "type": "char(64)",
+        "nullable": true
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      }
+    },
+    "clients": {
+      "address": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "code": {
+        "type": "varchar(30)",
+        "nullable": true
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "created_by": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "email": {
+        "type": "varchar(150)",
+        "nullable": true
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "is_active": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "is_generic": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "name": {
+        "type": "varchar(180)",
+        "nullable": false
+      },
+      "phone": {
+        "type": "varchar(40)",
+        "nullable": true
+      },
+      "rtn": {
+        "type": "varchar(30)",
+        "nullable": true
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      }
+    },
+    "companies": {
+      "address": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "code": {
+        "type": "varchar(30)",
+        "nullable": false
+      },
+      "commercial_name": {
+        "type": "varchar(150)",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "document_color": {
+        "type": "varchar(20)",
+        "nullable": true
+      },
+      "email": {
+        "type": "varchar(150)",
+        "nullable": true
+      },
+      "favicon_url": {
+        "type": "mediumtext",
+        "nullable": true
+      },
+      "footer_brands": {
+        "type": "longtext",
+        "nullable": true
+      },
+      "header_color": {
+        "type": "varchar(20)",
+        "nullable": true
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "is_active": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "layout_key": {
+        "type": "varchar(50)",
+        "nullable": false
+      },
+      "legal_name": {
+        "type": "varchar(180)",
+        "nullable": false
+      },
+      "logo_url": {
+        "type": "mediumtext",
+        "nullable": true
+      },
+      "phone": {
+        "type": "varchar(40)",
+        "nullable": true
+      },
+      "primary_color": {
+        "type": "varchar(20)",
+        "nullable": true
+      },
+      "rtn": {
+        "type": "varchar(30)",
+        "nullable": false
+      },
+      "secondary_color": {
+        "type": "varchar(20)",
+        "nullable": true
+      },
+      "sidebar_color": {
+        "type": "varchar(20)",
+        "nullable": true
+      },
+      "theme_mode": {
+        "type": "enum('light','dark')",
+        "nullable": false
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      }
+    },
+    "document_counters": {
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "counter_key": {
+        "type": "varchar(40)",
+        "nullable": false
+      },
+      "last_value": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      }
+    },
+    "inventory_entries": {
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "created_by": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "document_number": {
+        "type": "varchar(80)",
+        "nullable": true
+      },
+      "entry_date": {
+        "type": "date",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "notes": {
+        "type": "text",
+        "nullable": true
+      },
+      "status": {
+        "type": "enum('borrador','aplicada','anulada')",
+        "nullable": false
+      },
+      "supplier_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "supplier_name": {
+        "type": "varchar(180)",
+        "nullable": true
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "warehouse_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      }
+    },
+    "inventory_entry_items": {
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "entry_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "product_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "quantity": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "total_cost": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "unit_cost": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      }
+    },
+    "inventory_movements": {
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "created_by": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "entry_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "entry_item_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "invoice_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "invoice_item_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "movement_type": {
+        "type": "enum('stock_inicial','entrada','salida','ajuste_positivo','ajuste_negativo','venta','anulacion_venta')",
+        "nullable": false
+      },
+      "notes": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "product_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "quantity": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "source_type": {
+        "type": "enum('manual','entrada','factura','ajuste')",
+        "nullable": false
+      },
+      "stock_after": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "stock_before": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "unit_cost": {
+        "type": "decimal(14,2)",
+        "nullable": true
+      },
+      "unit_price": {
+        "type": "decimal(14,2)",
+        "nullable": true
+      },
+      "warehouse_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      }
+    },
+    "invoice_corrections": {
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "correction_type": {
+        "type": "enum('nombre_cliente','fecha_factura','ambos')",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "invoice_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "new_customer_name": {
+        "type": "varchar(180)",
+        "nullable": true
+      },
+      "new_invoice_date": {
+        "type": "date",
+        "nullable": true
+      },
+      "performed_by": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "previous_customer_name": {
+        "type": "varchar(180)",
+        "nullable": true
+      },
+      "previous_invoice_date": {
+        "type": "date",
+        "nullable": true
+      },
+      "reason": {
+        "type": "varchar(255)",
+        "nullable": false
+      },
+      "status": {
+        "type": "enum('aplicada','revertida')",
+        "nullable": false
+      }
+    },
+    "invoice_items": {
+      "affects_inventory": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "description": {
+        "type": "varchar(255)",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "invoice_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "line_discount": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "line_number": {
+        "type": "int unsigned",
+        "nullable": false
+      },
+      "line_subtotal": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "line_tax": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "line_total": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "product_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "quantity": {
+        "type": "decimal(12,2)",
+        "nullable": false
+      },
+      "tax_rate": {
+        "type": "decimal(5,2)",
+        "nullable": false
+      },
+      "unit_cost_snapshot": {
+        "type": "decimal(14,2)",
+        "nullable": true
+      },
+      "unit_price": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      }
+    },
+    "invoice_payments": {
+      "amount": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "created_by": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "invoice_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "method": {
+        "type": "enum('efectivo','transferencia','cheque','tarjeta','otro')",
+        "nullable": false
+      },
+      "notes": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "payment_date": {
+        "type": "date",
+        "nullable": false
+      },
+      "receipt_number": {
+        "type": "varchar(40)",
+        "nullable": true
+      },
+      "reference": {
+        "type": "varchar(120)",
+        "nullable": true
+      }
+    },
+    "invoices": {
+      "balance": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "billing_series_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "cai_snapshot": {
+        "type": "varchar(80)",
+        "nullable": false
+      },
+      "company_address_snapshot": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "company_commercial_name_snapshot": {
+        "type": "varchar(150)",
+        "nullable": false
+      },
+      "company_email_snapshot": {
+        "type": "varchar(150)",
+        "nullable": true
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "company_legal_name_snapshot": {
+        "type": "varchar(180)",
+        "nullable": false
+      },
+      "company_phone_snapshot": {
+        "type": "varchar(40)",
+        "nullable": true
+      },
+      "company_rtn_snapshot": {
+        "type": "varchar(30)",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "created_by": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "customer_address_snapshot": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "customer_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "customer_name_snapshot": {
+        "type": "varchar(180)",
+        "nullable": false
+      },
+      "customer_phone_snapshot": {
+        "type": "varchar(40)",
+        "nullable": true
+      },
+      "customer_rtn_snapshot": {
+        "type": "varchar(30)",
+        "nullable": true
+      },
+      "discount_total": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "due_date": {
+        "type": "date",
+        "nullable": true
+      },
+      "exempt_amount": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "exonerated_amount": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "grand_total": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "invoice_date": {
+        "type": "date",
+        "nullable": false
+      },
+      "invoice_number": {
+        "type": "varchar(20)",
+        "nullable": false
+      },
+      "issue_deadline_snapshot": {
+        "type": "date",
+        "nullable": false
+      },
+      "issued_at": {
+        "type": "datetime",
+        "nullable": false
+      },
+      "isv_15": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "isv_18": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "notes": {
+        "type": "text",
+        "nullable": true
+      },
+      "paid_amount": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "payment_status": {
+        "type": "enum('pendiente','parcial','pagada','anulada')",
+        "nullable": false
+      },
+      "range_end_snapshot": {
+        "type": "int unsigned",
+        "nullable": false
+      },
+      "range_start_snapshot": {
+        "type": "int unsigned",
+        "nullable": false
+      },
+      "resolution_number_snapshot": {
+        "type": "varchar(80)",
+        "nullable": true
+      },
+      "sale_type": {
+        "type": "enum('contado','credito')",
+        "nullable": false
+      },
+      "sequence_number": {
+        "type": "int unsigned",
+        "nullable": false
+      },
+      "source_proforma_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "status": {
+        "type": "enum('emitida','anulada')",
+        "nullable": false
+      },
+      "subtotal": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "tax_total": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "taxable_amount_15": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "taxable_amount_18": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "tender_method": {
+        "type": "enum('efectivo','transferencia','cheque','tarjeta','otro')",
+        "nullable": true
+      },
+      "total_in_words": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "warehouse_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      }
+    },
+    "license_devices": {
+      "app_version": {
+        "type": "varchar(30)",
+        "nullable": true
+      },
+      "conflict_at": {
+        "type": "timestamp",
+        "nullable": true
+      },
+      "conflict_name": {
+        "type": "varchar(120)",
+        "nullable": true
+      },
+      "first_seen": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "ip_address": {
+        "type": "varchar(45)",
+        "nullable": true
+      },
+      "last_seen": {
+        "type": "timestamp",
+        "nullable": true
+      },
+      "machine_code": {
+        "type": "varchar(12)",
+        "nullable": false
+      },
+      "machine_name": {
+        "type": "varchar(120)",
+        "nullable": true
+      }
+    },
+    "license_revocations": {
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "descripcion": {
+        "type": "varchar(200)",
+        "nullable": true
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "revocation_text": {
+        "type": "text",
+        "nullable": false
+      }
+    },
+    "payable_documents": {
+      "balance": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "created_by": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "description": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "document_date": {
+        "type": "date",
+        "nullable": false
+      },
+      "document_number": {
+        "type": "varchar(60)",
+        "nullable": false
+      },
+      "due_date": {
+        "type": "date",
+        "nullable": true
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "notes": {
+        "type": "text",
+        "nullable": true
+      },
+      "paid_amount": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "status": {
+        "type": "enum('pendiente','parcial','pagada','anulada')",
+        "nullable": false
+      },
+      "supplier_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "total": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      }
+    },
+    "payable_payments": {
+      "amount": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "created_by": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "method": {
+        "type": "enum('efectivo','transferencia','cheque','tarjeta','otro')",
+        "nullable": false
+      },
+      "notes": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "payable_document_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "payment_date": {
+        "type": "date",
+        "nullable": false
+      },
+      "receipt_number": {
+        "type": "varchar(40)",
+        "nullable": true
+      },
+      "reference": {
+        "type": "varchar(120)",
+        "nullable": true
+      }
+    },
+    "product_categories": {
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "description": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "is_active": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "name": {
+        "type": "varchar(120)",
+        "nullable": false
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      }
+    },
+    "product_codes": {
+      "code": {
+        "type": "varchar(60)",
+        "nullable": false
+      },
+      "code_type": {
+        "type": "enum('barra','manual')",
+        "nullable": false
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "product_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      }
+    },
+    "product_stocks": {
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "product_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "stock_quantity": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "warehouse_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      }
+    },
+    "products": {
+      "barcode": {
+        "type": "varchar(60)",
+        "nullable": true
+      },
+      "category_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "code": {
+        "type": "varchar(40)",
+        "nullable": false
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "controls_stock": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "cost_price": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "created_by": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "description": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "image_url": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "is_active": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "min_stock": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "name": {
+        "type": "varchar(180)",
+        "nullable": false
+      },
+      "sale_price": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "tax_rate": {
+        "type": "decimal(5,2)",
+        "nullable": false
+      },
+      "taxable": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "type": {
+        "type": "enum('producto','servicio','materiales')",
+        "nullable": false
+      },
+      "unit_measure": {
+        "type": "varchar(30)",
+        "nullable": false
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      }
+    },
+    "proforma_items": {
+      "affects_inventory": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "description": {
+        "type": "varchar(255)",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "line_discount": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "line_number": {
+        "type": "int unsigned",
+        "nullable": false
+      },
+      "line_subtotal": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "line_tax": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "line_total": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "product_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "proforma_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "quantity": {
+        "type": "decimal(12,2)",
+        "nullable": false
+      },
+      "tax_rate": {
+        "type": "decimal(5,2)",
+        "nullable": false
+      },
+      "unit_cost_snapshot": {
+        "type": "decimal(14,2)",
+        "nullable": true
+      },
+      "unit_price": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      }
+    },
+    "proforma_series": {
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "current_number": {
+        "type": "int unsigned",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "is_active": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "prefix": {
+        "type": "varchar(10)",
+        "nullable": false
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      }
+    },
+    "proformas": {
+      "approved_at": {
+        "type": "datetime",
+        "nullable": true
+      },
+      "approved_by": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "converted_to_invoice_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "created_by": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "customer_address_snapshot": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "customer_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "customer_name_snapshot": {
+        "type": "varchar(180)",
+        "nullable": false
+      },
+      "customer_phone_snapshot": {
+        "type": "varchar(40)",
+        "nullable": true
+      },
+      "customer_rtn_snapshot": {
+        "type": "varchar(30)",
+        "nullable": true
+      },
+      "discount_total": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "exempt_amount": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "exonerated_amount": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "grand_total": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "isv_15": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "isv_18": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "notes": {
+        "type": "text",
+        "nullable": true
+      },
+      "proforma_date": {
+        "type": "date",
+        "nullable": false
+      },
+      "proforma_number": {
+        "type": "varchar(30)",
+        "nullable": false
+      },
+      "proforma_series_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "sequence_number": {
+        "type": "int unsigned",
+        "nullable": false
+      },
+      "status": {
+        "type": "enum('borrador','enviada','aprobada','rechazada','vencida','facturada')",
+        "nullable": false
+      },
+      "subtotal": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "tax_total": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "taxable_amount_15": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "taxable_amount_18": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "total_in_words": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "valid_until": {
+        "type": "date",
+        "nullable": true
+      },
+      "warehouse_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      }
+    },
+    "quote_items": {
+      "affects_inventory": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "description": {
+        "type": "varchar(255)",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "line_discount": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "line_number": {
+        "type": "int unsigned",
+        "nullable": false
+      },
+      "line_subtotal": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "line_tax": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "line_total": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "product_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "quantity": {
+        "type": "decimal(12,2)",
+        "nullable": false
+      },
+      "quote_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "tax_rate": {
+        "type": "decimal(5,2)",
+        "nullable": false
+      },
+      "unit_cost_snapshot": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "unit_price": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      }
+    },
+    "quote_series": {
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "current_number": {
+        "type": "int unsigned",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "is_active": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "prefix": {
+        "type": "varchar(10)",
+        "nullable": false
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      }
+    },
+    "quotes": {
+      "approved_at": {
+        "type": "datetime",
+        "nullable": true
+      },
+      "approved_by": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "converted_to_invoice_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "created_by": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "customer_address_snapshot": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "customer_email_snapshot": {
+        "type": "varchar(150)",
+        "nullable": true
+      },
+      "customer_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "customer_name_snapshot": {
+        "type": "varchar(180)",
+        "nullable": false
+      },
+      "customer_phone_snapshot": {
+        "type": "varchar(40)",
+        "nullable": true
+      },
+      "customer_rtn_snapshot": {
+        "type": "varchar(30)",
+        "nullable": true
+      },
+      "discount_total": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "exempt_amount": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "exonerated_amount": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "grand_total": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "isv_15": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "isv_18": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "notes": {
+        "type": "text",
+        "nullable": true
+      },
+      "quote_date": {
+        "type": "date",
+        "nullable": false
+      },
+      "quote_number": {
+        "type": "varchar(30)",
+        "nullable": false
+      },
+      "quote_series_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "sequence_number": {
+        "type": "int unsigned",
+        "nullable": false
+      },
+      "status": {
+        "type": "enum('borrador','enviada','aprobada','rechazada','vencida','facturada')",
+        "nullable": false
+      },
+      "subtotal": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "tax_total": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "taxable_amount_15": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "taxable_amount_18": {
+        "type": "decimal(14,2)",
+        "nullable": false
+      },
+      "total_in_words": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "valid_until": {
+        "type": "date",
+        "nullable": true
+      },
+      "warehouse_id": {
+        "type": "bigint unsigned",
+        "nullable": true
+      }
+    },
+    "role_permissions": {
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "permission_key": {
+        "type": "varchar(80)",
+        "nullable": false
+      },
+      "role_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      }
+    },
+    "roles": {
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "descripcion": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "nombre": {
+        "type": "varchar(50)",
+        "nullable": false
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      }
+    },
+    "suppliers": {
+      "address": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "code": {
+        "type": "varchar(30)",
+        "nullable": true
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "created_by": {
+        "type": "bigint unsigned",
+        "nullable": true
+      },
+      "email": {
+        "type": "varchar(150)",
+        "nullable": true
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "is_active": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "name": {
+        "type": "varchar(180)",
+        "nullable": false
+      },
+      "phone": {
+        "type": "varchar(40)",
+        "nullable": true
+      },
+      "rtn": {
+        "type": "varchar(30)",
+        "nullable": true
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      }
+    },
+    "system_licenses": {
+      "emitida": {
+        "type": "date",
+        "nullable": false
+      },
+      "empresa": {
+        "type": "varchar(150)",
+        "nullable": true
+      },
+      "equipos": {
+        "type": "int",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "installed_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "license_id": {
+        "type": "varchar(40)",
+        "nullable": false
+      },
+      "license_text": {
+        "type": "text",
+        "nullable": false
+      },
+      "vence": {
+        "type": "date",
+        "nullable": true
+      }
+    },
+    "system_versions": {
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "version": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "version_key": {
+        "type": "varchar(40)",
+        "nullable": false
+      }
+    },
+    "user_company_access": {
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "user_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      }
+    },
+    "users": {
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "email": {
+        "type": "varchar(150)",
+        "nullable": false
+      },
+      "full_name": {
+        "type": "varchar(150)",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "is_active": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "last_login_at": {
+        "type": "datetime",
+        "nullable": true
+      },
+      "password_hash": {
+        "type": "varchar(255)",
+        "nullable": false
+      },
+      "role_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "username": {
+        "type": "varchar(80)",
+        "nullable": false
+      }
+    },
+    "warehouses": {
+      "address": {
+        "type": "varchar(255)",
+        "nullable": true
+      },
+      "code": {
+        "type": "varchar(30)",
+        "nullable": false
+      },
+      "company_id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "created_at": {
+        "type": "timestamp",
+        "nullable": false
+      },
+      "id": {
+        "type": "bigint unsigned",
+        "nullable": false
+      },
+      "is_active": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "is_default": {
+        "type": "tinyint",
+        "nullable": false
+      },
+      "name": {
+        "type": "varchar(120)",
+        "nullable": false
+      },
+      "updated_at": {
+        "type": "timestamp",
+        "nullable": false
+      }
+    }
+  }
+}
